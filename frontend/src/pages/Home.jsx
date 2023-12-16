@@ -67,8 +67,8 @@ const Home = () => {
           The Community Showcase
         </h1>
         <p className="mt-2 text-[#666e75] text-[16px] max-w-[500px]">
-          DALL·E 2 is a new AI system that can create realistic images and art
-          from a description in natural language.
+          Art Vision AI is a new AI system that can create realistic images and
+          art from a description in natural language.
         </p>
       </div>
       <div className="mt-16">
