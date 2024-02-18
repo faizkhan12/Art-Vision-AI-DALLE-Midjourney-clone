@@ -6,18 +6,17 @@ import { FormField, Loader } from "../components";
 
 const TextToImage = ({ name }) => {
   const [form, setForm] = useState({
-    name: name,
     prompt: "",
     photo: "",
   });
+
   const [generatingImg, setGeneratingImg] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (form.prompt && form.photo && form.name) {
+    if (form.prompt && form.photo && name) {
       setLoading(true);
 
       try {
@@ -28,7 +27,11 @@ const TextToImage = ({ name }) => {
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify(form),
+            body: JSON.stringify({
+              name,
+              prompt: form.prompt,
+              photo: form.photo,
+            }),
           }
         );
         await response.json();
@@ -64,7 +67,10 @@ const TextToImage = ({ name }) => {
           }
         );
         const data = await response.json();
-        setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` });
+        setForm({
+          ...form,
+          photo: `data:image/jpeg;base64,${data.photo[0].b64_json}`,
+        });
       } catch (error) {
         alert(error);
         console.log(error);
