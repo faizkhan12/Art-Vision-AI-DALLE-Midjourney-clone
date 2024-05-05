@@ -69,7 +69,7 @@ const Vision = () => {
         body: JSON.stringify({
           file: base64Image,
           prompt: prompt,
-          detail: "off",
+          detail: "auto",
           max_tokens: maxTokens,
         }),
       }
